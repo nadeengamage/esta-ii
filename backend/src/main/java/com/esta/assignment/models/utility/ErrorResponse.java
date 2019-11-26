@@ -1,4 +1,4 @@
-package com.esta.assignment.models;
+package com.esta.assignment.models.utility;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
