@@ -2,7 +2,7 @@ package com.esta.assignment.controllers;
 
 import com.esta.assignment.exceptions.DataFormatException;
 import com.esta.assignment.exceptions.ResourceNotFoundException;
-import com.esta.assignment.models.ErrorResponse;
+import com.esta.assignment.models.utility.ErrorResponse;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.http.HttpStatus;
