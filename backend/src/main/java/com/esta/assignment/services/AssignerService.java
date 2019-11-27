@@ -26,10 +26,10 @@ public class AssignerService {
     private AssignerHistoryRepository historyRepository;
 
     /**
-     * Fetch all employees from the repository.
+     * Fetch all assigners from the repository.
      * @param page Integer
      * @param size Integer
-     * @return List<Assigner> All employees.
+     * @return List<Assigner> All assigners.
      */
     public Page<Assigner> getAllAssigner(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -39,21 +39,21 @@ public class AssignerService {
 
     /**
      * Get an existing Assigner.
-     * @param employeeId Long
+     * @param assignerId Long
      * @return Assigner details.
      */
-    public Assigner getAssignerById(Long employeeId) {
-        return repository.findById(employeeId)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Assigner %s is couldn't found!", employeeId)));
+    public Assigner getAssignerById(Long assignerId) {
+        return repository.findById(assignerId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Assigner %s is couldn't found!", assignerId)));
     }
 
     /**
      * Create an Assigner.
-     * @param employee Assigner
+     * @param assigner Assigner
      * @return Assigner details.
      */
-    public Assigner saveAssigner(Assigner employee) {
-        Assigner createdAssigner = repository.saveAndFlush(employee);
+    public Assigner saveAssigner(Assigner assigner) {
+        Assigner createdAssigner = repository.saveAndFlush(assigner);
         AssignerHistory history = new AssignerHistory(createdAssigner, "Inserted an Assigner", "CREATED");
         java.util.Date date = new java.util.Date();
         history.setHistoryDate(new Timestamp(date.getTime()));
@@ -63,13 +63,13 @@ public class AssignerService {
 
     /**
      * Update an existing Assigner.
-     * @param employee Assigner
+     * @param assigner Assigner
      * @param id Long
      */
-    public void updateAssigner(Assigner employee, Long id) {
+    public void updateAssigner(Assigner assigner, Long id) {
         Assigner exitsAssigner = getAssignerById(id);
-        employee.setId(exitsAssigner.getId());
-        repository.save(employee);
+        assigner.setId(exitsAssigner.getId());
+        repository.save(assigner);
     }
 
     /**
