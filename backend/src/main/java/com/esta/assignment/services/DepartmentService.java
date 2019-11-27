@@ -56,7 +56,7 @@ public class DepartmentService {
     public Department saveDepartment(Department department) {
         Date date = new Date();
         Department createdDepartment = repository.saveAndFlush(department);
-        DepartmentHistory departmentHistory = new DepartmentHistory(createdDepartment, "Inserted an Department", "+");
+        DepartmentHistory departmentHistory = new DepartmentHistory(createdDepartment, "Inserted an Department", "CREATED");
         departmentHistory.setHistoryDate(new Timestamp(date.getTime()));
         historyRepository.save(departmentHistory);
         return createdDepartment;

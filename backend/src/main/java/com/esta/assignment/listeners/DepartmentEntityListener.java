@@ -19,14 +19,14 @@ public class DepartmentEntityListener {
     @PreUpdate
     public void preUpdate(Department department) {
         perform(new DepartmentHistory(
-                department, "Updated an Department", "+"
+                department, "Updated an Department", "UPDATED"
         ));
     }
 
     @PreRemove
     public void preRemove(Department department) {
         perform(new DepartmentHistory(
-                department, "Deleted an Department", "-"
+                department, "Deleted an Department", "DELETED"
         ));
     }
 
