@@ -12,7 +12,7 @@ import java.sql.Time;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
     private Long id;
 

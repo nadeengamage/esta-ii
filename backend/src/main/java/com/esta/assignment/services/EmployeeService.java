@@ -2,12 +2,16 @@ package com.esta.assignment.services;
 
 import com.esta.assignment.exceptions.ResourceNotFoundException;
 import com.esta.assignment.models.Employee;
+import com.esta.assignment.models.audits.EmployeeHistory;
 import com.esta.assignment.repositories.EmployeeRepository;
+import com.esta.assignment.repositories.audit.EmployeeHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 
 /**
  * Employee service.
@@ -17,6 +21,9 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepository repository;
+
+    @Autowired
+    private EmployeeHistoryRepository historyRepository;
 
     /**
      * Fetch all employees from the repository.
@@ -46,7 +53,12 @@ public class EmployeeService {
      * @return Employee details.
      */
     public Employee saveEmployee(Employee employee) {
-        return repository.save(employee);
+        Employee createdEmployee = repository.saveAndFlush(employee);
+        EmployeeHistory history = new EmployeeHistory(createdEmployee, "Inserted an Employee", "CREATED");
+        java.util.Date date = new java.util.Date();
+        history.setHistoryDate(new Timestamp(date.getTime()));
+        historyRepository.save(history);
+        return createdEmployee;
     }
 
     /**
@@ -65,7 +77,8 @@ public class EmployeeService {
      * @param id Long
      */
     public void deleteEmployee(Long id) {
-        this.getEmployeeById(id);
-        repository.deleteById(id);
+        Employee exitsEmployee = getEmployeeById(id);
+        exitsEmployee.setStatus(false);
+        repository.save(exitsEmployee);
     }
 }

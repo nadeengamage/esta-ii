@@ -4,10 +4,7 @@ import com.esta.assignment.models.Employee;
 import com.esta.assignment.models.audits.EmployeeHistory;
 import com.esta.assignment.services.UtilityService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 
@@ -16,52 +13,21 @@ import java.sql.Timestamp;
  */
 public class EmployeeEntityListener {
 
-    @PrePersist
-    public void prePersist(Employee employee) {
-        perform(new EmployeeHistory(
-                employee.getId(),
-                employee.getFirstName(),
-                employee.getLastName(),
-                employee.getWorkingHours(),
-                employee.getDateJoin(),
-                employee.getDateLeft(),
-                employee.getStatus(),
-                "Inserted an Employee",
-                "+"
-        ));
-    }
-
     @PreUpdate
-    public void preUpdate(Employee employee) {
+    public void postUpdate(Employee employee) {
         perform(new EmployeeHistory(
-                employee.getId(),
-                employee.getFirstName(),
-                employee.getLastName(),
-                employee.getWorkingHours(),
-                employee.getDateJoin(),
-                employee.getDateLeft(),
-                employee.getStatus(),
-                "Updated an Employee",
-                "+"
+                employee, "Updated an Employee", "UPDATED"
         ));
     }
 
     @PreRemove
-    public void preRemove(Employee employee) {
+    public void postRemove(Employee employee) {
         perform(new EmployeeHistory(
-                employee.getId(),
-                employee.getFirstName(),
-                employee.getLastName(),
-                employee.getWorkingHours(),
-                employee.getDateJoin(),
-                employee.getDateLeft(),
-                employee.getStatus(),
-                "Deleted an Employee",
-                "-"
+                employee, "Deleted an Employee", "DELETED"
         ));
     }
 
-    @Transactional
+    @Transactional(Transactional.TxType.MANDATORY)
     public void perform(EmployeeHistory history) {
         java.util.Date date = new java.util.Date();
         history.setHistoryDate(new Timestamp(date.getTime()));

@@ -1,5 +1,8 @@
 package com.esta.assignment.models.audits;
 
+import com.esta.assignment.models.Employee;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -7,6 +10,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "employee_audit_trail")
+@EntityListeners(AuditingEntityListener.class)
 public class EmployeeHistory {
 
     @Id
@@ -14,8 +18,9 @@ public class EmployeeHistory {
     @Column(name = "history_id")
     private Long id;
 
-    @Column(name = "emp_id")
-    private Long employeeId;
+    @ManyToOne
+    @JoinColumn(name = "emp_id", foreignKey = @ForeignKey(name = "employee_audit_trail_fk"))
+    private Employee employee;
 
     @Column(name = "first_name")
     private String firstName;
@@ -44,14 +49,14 @@ public class EmployeeHistory {
     @Column(name = "history_type")
     private String historyType;
 
-    public EmployeeHistory(Long employeeId, String firstName, String lastName, Time workingHours, Date dateJoin, Date dateLeft, Boolean status, String historyChangeReason, String historyType) {
-        this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.workingHours = workingHours;
-        this.dateJoin = dateJoin;
-        this.dateLeft = dateLeft;
-        this.status = status;
+    public EmployeeHistory(Employee employee, String historyChangeReason, String historyType) {
+        this.employee= employee;
+        this.firstName = employee.getFirstName();
+        this.lastName = employee.getLastName();
+        this.workingHours = employee.getWorkingHours();
+        this.dateJoin = employee.getDateJoin();
+        this.dateLeft = employee.getDateLeft();
+        this.status = employee.getStatus();
         this.historyChangeReason = historyChangeReason;
         this.historyType = historyType;
     }
@@ -64,12 +69,12 @@ public class EmployeeHistory {
         this.id = id;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getFirstName() {
@@ -143,5 +148,4 @@ public class EmployeeHistory {
     public void setHistoryType(String historyType) {
         this.historyType = historyType;
     }
-
 }
