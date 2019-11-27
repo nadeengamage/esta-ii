@@ -78,7 +78,6 @@ public class EmployeeService {
      */
     public void deleteEmployee(Long id) {
         Employee exitsEmployee = getEmployeeById(id);
-        exitsEmployee.setStatus(false);
-        repository.save(exitsEmployee);
+        repository.delete(exitsEmployee);
     }
 }

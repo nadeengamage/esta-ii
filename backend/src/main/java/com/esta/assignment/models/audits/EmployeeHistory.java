@@ -1,6 +1,8 @@
 package com.esta.assignment.models.audits;
 
 import com.esta.assignment.models.Employee;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -14,12 +16,13 @@ import java.sql.Timestamp;
 public class EmployeeHistory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "history_id")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "emp_id", foreignKey = @ForeignKey(name = "employee_audit_trail_fk"))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Employee employee;
 
     @Column(name = "first_name")

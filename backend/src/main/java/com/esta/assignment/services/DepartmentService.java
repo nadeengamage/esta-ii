@@ -79,7 +79,6 @@ public class DepartmentService {
      */
     public void deleteDepartment(Long id) {
         Department exitsDepartment = getDepartmentById(id);
-        exitsDepartment.setStatus(false);
-        repository.save(exitsDepartment);
+        repository.delete(exitsDepartment);
     }
 }
