@@ -10,6 +10,9 @@ import { EmployeeComponent } from './components/modules/employee/employee.compon
 import { DepartmentComponent } from './components/modules/department/department.component';
 import { AssignerComponent } from './components/modules/assigner/assigner.component';
 import { AssignerHistoryComponent } from './components/modules/assigner-history/assigner-history.component';
+import { DepartmentAddComponent } from './components/modules/department/add/add.component';
+import { DepartmentEditComponent } from './components/modules/department/edit/edit.component';
+import { DepartmentDeleteComponent } from './components/modules/department/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { AssignerHistoryComponent } from './components/modules/assigner-history/
     EmployeeComponent,
     DepartmentComponent,
     AssignerComponent,
-    AssignerHistoryComponent
+    AssignerHistoryComponent,
+    DepartmentAddComponent,
+    DepartmentEditComponent,
+    DepartmentDeleteComponent
   ],
   imports: [
     BrowserModule,
