@@ -8,6 +8,10 @@ import { AssignerComponent } from './components/modules/assigner/assigner.compon
 import { AssignerHistoryComponent } from './components/modules/assigner-history/assigner-history.component';
 import { DepartmentAddComponent } from './components/modules/department/add/add.component';
 import { DepartmentEditComponent } from './components/modules/department/edit/edit.component';
+import { EmployeeAddComponent } from './components/modules/employee/add/add.component';
+import { EmployeeDeleteComponent } from './components/modules/employee/delete/delete.component';
+import { AssignerAddComponent } from './components/modules/assigner/add/add.component';
+import { AssignerEditComponent } from './components/modules/assigner/edit/edit.component';
 
 const routes: Routes = [
     {
@@ -31,8 +35,24 @@ const routes: Routes = [
         component: EmployeeComponent
     },
     {
+        path: 'employees/add',
+        component: EmployeeAddComponent
+    },
+    {
+        path: 'employees/edit',
+        component: EmployeeDeleteComponent
+    },
+    {
         path: 'assigners',
         component: AssignerComponent
+    },
+    {
+        path: 'assigners/add',
+        component: AssignerAddComponent
+    },
+    {
+        path: 'assigners/edit',
+        component: AssignerEditComponent
     },
     {
         path: 'assigner-history',
