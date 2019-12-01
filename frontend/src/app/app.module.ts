@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,12 @@ import { AssignerHistoryComponent } from './components/modules/assigner-history/
 import { DepartmentAddComponent } from './components/modules/department/add/add.component';
 import { DepartmentEditComponent } from './components/modules/department/edit/edit.component';
 import { DepartmentDeleteComponent } from './components/modules/department/delete/delete.component';
+import { EmployeeAddComponent } from './components/modules/employee/add/add.component';
+import { EmployeeEditComponent } from './components/modules/employee/edit/edit.component';
+import { EmployeeDeleteComponent } from './components/modules/employee/delete/delete.component';
+import { AssignerAddComponent } from './components/modules/assigner/add/add.component';
+import { AssignerEditComponent } from './components/modules/assigner/edit/edit.component';
+import { AssignerDeleteComponent } from './components/modules/assigner/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +33,19 @@ import { DepartmentDeleteComponent } from './components/modules/department/delet
     AssignerHistoryComponent,
     DepartmentAddComponent,
     DepartmentEditComponent,
-    DepartmentDeleteComponent
+    DepartmentDeleteComponent,
+    EmployeeAddComponent,
+    EmployeeEditComponent,
+    EmployeeDeleteComponent,
+    AssignerAddComponent,
+    AssignerEditComponent,
+    AssignerDeleteComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
