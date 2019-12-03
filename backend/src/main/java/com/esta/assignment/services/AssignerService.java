@@ -36,6 +36,7 @@ public class AssignerService {
 
     /**
      * Fetch all assigners from the repository.
+     *
      * @param page Integer
      * @param size Integer
      * @return List<Assigner> All assigners.
@@ -47,7 +48,21 @@ public class AssignerService {
     }
 
     /**
+     * Fetch all assigners from the repository.
+     *
+     * @param page Integer
+     * @param size Integer
+     * @return List<Assigner> All assigners.
+     */
+    public Page<AssignerHistory> getAllAssignerHistory(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<AssignerHistory> pageOfAssigners = historyRepository.findAll(pageable);
+        return pageOfAssigners;
+    }
+
+    /**
      * Get an existing Assigner.
+     *
      * @param assignerId Long
      * @return Assigner details.
      */
@@ -58,6 +73,7 @@ public class AssignerService {
 
     /**
      * Create an Assigner.
+     *
      * @param assigner Assigner
      * @return Assigner details.
      */
@@ -75,8 +91,9 @@ public class AssignerService {
 
     /**
      * Update an existing Assigner.
+     *
      * @param assigner Assigner
-     * @param id Long
+     * @param id       Long
      */
     public void updateAssigner(Assigner assigner, Long id) {
         checkEmployeeAssignment(assigner);
@@ -88,15 +105,17 @@ public class AssignerService {
 
     /**
      * Delete an existing Assigner
+     *
      * @param id Long
      */
     public void deleteAssigner(Long id) {
         Assigner exitsAssigner = getAssignerById(id);
-        repository.save(exitsAssigner);
+        repository.delete(exitsAssigner);
     }
 
     /**
      * Validation of the assigned time.
+     *
      * @param assigner
      */
     private void checkEmployeeAssignment(Assigner assigner) {
@@ -127,6 +146,7 @@ public class AssignerService {
 
     /**
      * Sum of the times.
+     *
      * @param times
      * @return String time.
      */
@@ -135,18 +155,18 @@ public class AssignerService {
         int minutes = 0;
         int seconds = 0;
 
-        for(int i = 0; i < times.size(); i++) {
+        for (int i = 0; i < times.size(); i++) {
             hours += Integer.parseInt(times.get(i).toString().split(":")[0]);
             minutes += Integer.parseInt(times.get(i).toString().split(":")[1]);
             seconds += Integer.parseInt(times.get(i).toString().split(":")[2]);
 
             if (seconds >= 60) {
-                minutes ++;
+                minutes++;
                 seconds = seconds % 60;
             }
 
             if (minutes >= 60) {
-                hours ++;
+                hours++;
                 minutes = minutes % 60;
             }
         }

@@ -46,6 +46,9 @@ public class AssignerHistory {
     @Column(name = "history_type")
     private String historyType;
 
+    public AssignerHistory() {
+    }
+
     public AssignerHistory(Assigner assigner, String historyChangeReason, String historyType) {
         this.assignerId = assigner.getId();
         this.workingHours = assigner.getWorkingHours();

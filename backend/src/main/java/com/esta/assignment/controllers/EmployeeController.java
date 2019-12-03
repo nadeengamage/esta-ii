@@ -22,11 +22,12 @@ public class EmployeeController extends AbstractRestHandler {
 
     /**
      * Get All Employees.
+     *
      * @param page Integer
      * @param size Integer
      * @return List<Employee> All employees.
      */
-    @GetMapping(produces = {"application/json", "application/xml"})
+    @GetMapping(produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
     public Page<Employee> getAllEmployees(@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
                                           @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
@@ -35,11 +36,12 @@ public class EmployeeController extends AbstractRestHandler {
 
     /**
      * Get an Employee by id.
+     *
      * @param id Integer
      * @return Employee details
      */
     @GetMapping(path = "/{id}",
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     public Employee getEmployeeById(@PathVariable Long id) {
         Employee employee = service.getEmployeeById(id);
         return employee;
@@ -47,12 +49,13 @@ public class EmployeeController extends AbstractRestHandler {
 
     /**
      * Create an Employee.
+     *
      * @param employee Employee
-     * @param request HttpServletRequest
+     * @param request  HttpServletRequest
      * @param response HttpServletResponse
      */
-    @PostMapping(consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+    @PostMapping(consumes = {"application/json"},
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
     public void createAnEmployee(@RequestBody Employee employee,
                                  HttpServletRequest request, HttpServletResponse response) {
@@ -62,12 +65,13 @@ public class EmployeeController extends AbstractRestHandler {
 
     /**
      * Update an existing Employee.
+     *
      * @param employee Employee
-     * @param id Long
+     * @param id       Long
      */
     @PutMapping(path = "/{id}",
-            consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+            consumes = {"application/json"},
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateAnEmployee(@RequestBody Employee employee, @PathVariable Long id) {
         service.updateEmployee(employee, id);
@@ -75,10 +79,11 @@ public class EmployeeController extends AbstractRestHandler {
 
     /**
      * Delete an existing Employee
+     *
      * @param id Long
      */
     @DeleteMapping(path = "/{id}",
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);

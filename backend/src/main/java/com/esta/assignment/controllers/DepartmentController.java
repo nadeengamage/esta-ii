@@ -22,24 +22,26 @@ public class DepartmentController extends AbstractRestHandler {
 
     /**
      * Get All Departments.
+     *
      * @param page Integer
      * @param size Integer
      * @return List<Department> All departments.
      */
-    @GetMapping(produces = {"application/json", "application/xml"})
+    @GetMapping(produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
     public Page<Department> getAllDepartments(@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
-                                          @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
+                                              @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
         return service.getAllDepartment(page, size);
     }
 
     /**
      * Get an Department by id.
+     *
      * @param id Integer
      * @return Department details
      */
     @GetMapping(path = "/{id}",
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     public Department getDepartmentById(@PathVariable Long id) {
         Department department = service.getDepartmentById(id);
         return department;
@@ -47,27 +49,29 @@ public class DepartmentController extends AbstractRestHandler {
 
     /**
      * Create an Department.
+     *
      * @param department Department
-     * @param request HttpServletRequest
-     * @param response HttpServletResponse
+     * @param request    HttpServletRequest
+     * @param response   HttpServletResponse
      */
-    @PostMapping(consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+    @PostMapping(consumes = {"application/json"},
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
     public void createAnDepartment(@RequestBody Department department,
-                                 HttpServletRequest request, HttpServletResponse response) {
+                                   HttpServletRequest request, HttpServletResponse response) {
         Department createdDepartment = service.saveDepartment(department);
         response.setHeader("Location", request.getRequestURL().append("/").append(createdDepartment.getId()).toString());
     }
 
     /**
      * Update an existing Department.
+     *
      * @param department Department
-     * @param id Long
+     * @param id         Long
      */
     @PutMapping(path = "/{id}",
-            consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+            consumes = {"application/json"},
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateAnDepartment(@RequestBody Department department, @PathVariable Long id) {
         service.updateDepartment(department, id);
@@ -75,10 +79,11 @@ public class DepartmentController extends AbstractRestHandler {
 
     /**
      * Delete an existing Department
+     *
      * @param id Long
      */
     @DeleteMapping(path = "/{id}",
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnDepartment(@PathVariable Long id) {
         service.deleteDepartment(id);
