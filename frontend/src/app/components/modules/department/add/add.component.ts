@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DepartmentService } from 'src/app/services/department/department.service';
 
 @Component({
   selector: 'app-add',
@@ -11,21 +12,19 @@ export class DepartmentAddComponent implements OnInit {
   addForm: FormGroup;
   submitted = false;
   statusList;
+  success: boolean;
+  error: boolean;
   
-  constructor() { }
+  constructor(private service: DepartmentService) { }
 
   ngOnInit() {
 
-    this.statusList = [
-      {value: 'Active'},
-      {value: 'Inactive'}
-    ]
 
     this.addForm = new FormGroup({
       department_name: new FormControl('', [Validators.required]),
       working_days: new FormControl('', [Validators.required]),
-      working_hours: new FormControl('', [Validators.required, Validators.pattern("^\d+:\d{2}:\d{2}$")]),
-      status: new FormControl(this.statusList[0])
+      working_hours: new FormControl('', [Validators.required]),
+      status: new FormControl(1)
     });
   }
 
@@ -39,7 +38,15 @@ export class DepartmentAddComponent implements OnInit {
             return;
         }
 
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value))
+        // alert('SUCCESS!! :-)\n\n' + JSON.stringify())
+        this.service.saveDepartmet(this.addForm.value)
+        .subscribe(
+          data  => {
+          this.success = true;
+          },
+          e  => {
+            this.error = true;
+          });
   }
 
 }

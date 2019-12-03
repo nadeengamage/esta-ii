@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DepartmentService } from 'src/app/services/department/department.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -10,21 +12,30 @@ export class DepartmentEditComponent implements OnInit {
 
   editForm: FormGroup;
   submitted = false;
-  statusList: any[] | { value: string; }[];
+  success: boolean;
+  error: boolean;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private service: DepartmentService) { }
 
   ngOnInit() {
-    this.statusList = [
-      {value: 'Active'},
-      {value: 'Inactive'}
-    ]
+
+    this.route.params.subscribe(params => {
+      this.service.getDepartmentById(params['id'])
+        .subscribe((res: any) => {
+          this.editForm.setValue({
+            department_name: res.name,
+            working_days: res.workingDaysPerWeek,
+            working_hours: res.workingHoursPerDay,
+            status: res.status
+          });
+        })
+    });
 
     this.editForm = new FormGroup({
       department_name: new FormControl('', [Validators.required]),
       working_days: new FormControl('', [Validators.required]),
-      working_hours: new FormControl('', [Validators.required, Validators.pattern("^\d+:\d{2}:\d{2}$")]),
-      status: new FormControl(this.statusList[0])
+      working_hours: new FormControl('', [Validators.required]),
+      status: new FormControl(1)
     });
   }
 
@@ -38,7 +49,16 @@ export class DepartmentEditComponent implements OnInit {
       return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editForm.value))
+    this.route.params.subscribe(params => {
+      this.service.updateDepartment(this.editForm.value, params['id'])
+        .subscribe(
+          data => {
+            this.success = true;
+          },
+          e => {
+            this.error = true;
+          });
+    });
   }
 
 }

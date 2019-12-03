@@ -13,6 +13,16 @@
         <div class="text-xl font-bold text-gray-700">Add Department</div>
     </div>
 
+    <div *ngIf="success" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
+        <p class="font-bold">Success!</p>
+        <p>Data saved!</p>
+    </div>
+
+    <div *ngIf="error" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+        <p class="font-bold">Error!</p>
+        <p>Something happening.</p>
+    </div>
+
     <form class="w-full max-w-lg" [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3 mb-6 md:mb-0">
@@ -52,7 +62,7 @@
                 <input
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     id="working-hours" formControlName="working_hours" type="text" placeholder="00:00:00"
-                    [ngClass]="{ 'border-red-500': submitted && form.working_hours.errors }">
+                    [ngClass]="{ 'border-red-500': submitted && form.working_hours.errors }" pattern="^\d+:\d{2}:\d{2}$">
                 <div *ngIf="submitted && form.working_hours.errors">
                     <p *ngIf="form.working_hours.errors.required" class="text-red-500 text-xs italic">Please fill out this
                         field.</p>
@@ -72,9 +82,8 @@
                     <select
                         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="status" formControlName="status">
-                        <option *ngFor="let status of statusList" [ngValue]="status">
-                            {{ status.value }}
-                        </option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
