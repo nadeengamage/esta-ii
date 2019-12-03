@@ -6,3 +6,43 @@
     </div>
     <hr class="pt-2 border-b border-gray-200">
 </div>
+
+<div class="w-full pt-10">
+    <div class="mb-6">
+        <div class="text-xl font-bold text-gray-700">Assigners</div>
+    </div>
+    <div id='recipients' class="p-8 mt-6 lg:mt-0">
+        <table datatable class="stripe hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Working Hours</th>
+                    <th>Department</th>
+                    <th>Employee</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="assigners?.length != 0">
+                <tr *ngFor="let assigner of assigners">
+                    <td>{{ assigner.id }}</td>
+                    <td>{{ assigner.workingHours }}</td>
+                    <td>{{ assigner.department.name }}</td>
+                    <td>{{ assigner.employee.firstName }} {{ assigner.employee.lastName }}</td>
+                    <td>
+                        <a [routerLink]="['/assigners/edit', assigner.id]" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 mr-2 rounded">
+                            Edit    
+                        </a>
+                        <a [routerLink]="['/assigners/delete', assigner.id]" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                            Delete   
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="assigners?.length == 0">
+                <tr>
+                  <td colspan="6" class="no-data-available">No data!</td>
+                </tr>
+              <tbody>
+        </table>
+    </div>
+</div>
