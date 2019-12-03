@@ -27,6 +27,7 @@ public class EmployeeService {
 
     /**
      * Fetch all employees from the repository.
+     *
      * @param page Integer
      * @param size Integer
      * @return List<Employee> All employees.
@@ -39,6 +40,7 @@ public class EmployeeService {
 
     /**
      * Get an existing Employee.
+     *
      * @param employeeId Long
      * @return Employee details.
      */
@@ -49,6 +51,7 @@ public class EmployeeService {
 
     /**
      * Create an Employee.
+     *
      * @param employee Employee
      * @return Employee details.
      */
@@ -63,8 +66,9 @@ public class EmployeeService {
 
     /**
      * Update an existing Employee.
+     *
      * @param employee Employee
-     * @param id Long
+     * @param id       Long
      */
     public void updateEmployee(Employee employee, Long id) {
         Employee exitsEmployee = getEmployeeById(id);
@@ -74,6 +78,7 @@ public class EmployeeService {
 
     /**
      * Delete an existing Employee
+     *
      * @param id Long
      */
     public void deleteEmployee(Long id) {

@@ -28,6 +28,7 @@ public class DepartmentService {
 
     /**
      * Fetch all department from the repository.
+     *
      * @param page Integer
      * @param size Integer
      * @return List<Department> All department.
@@ -40,6 +41,7 @@ public class DepartmentService {
 
     /**
      * Get an existing Department.
+     *
      * @param departmentId Long
      * @return Department details.
      */
@@ -50,6 +52,7 @@ public class DepartmentService {
 
     /**
      * Create an Department.
+     *
      * @param department Department
      * @return Department details.
      */
@@ -64,8 +67,9 @@ public class DepartmentService {
 
     /**
      * Update an existing Department.
+     *
      * @param department Department
-     * @param id Long
+     * @param id         Long
      */
     public void updateDepartment(Department department, Long id) {
         Department exitsDepartment = getDepartmentById(id);
@@ -75,6 +79,7 @@ public class DepartmentService {
 
     /**
      * Delete an existing Department
+     *
      * @param id Long
      */
     public void deleteDepartment(Long id) {
