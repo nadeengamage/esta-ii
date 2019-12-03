@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
 
 @Component({
   selector: 'app-edit',
@@ -11,22 +13,34 @@ export class EmployeeEditComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   statusList: any[] | { value: string; }[];
-  constructor() { }
+  success: boolean;
+  error: boolean;
+
+  constructor(private route: ActivatedRoute, private service: EmployeeService) { }
 
   ngOnInit() {
-    
-    this.statusList = [
-      {value: 'Active'},
-      {value: 'Inactive'}
-    ]
 
+    this.route.params.subscribe(params => {
+      this.service.getEmployeeById(params['id'])
+        .subscribe((res: any) => {
+          this.editForm.setValue({
+            first_name: res.firstName, 
+            last_name: res.lastName,
+            date_join: res.dateJoin,
+            date_left: res.dateLeft,
+            working_hours: res.workingHours,
+            status: res.status,
+          });
+        })
+    });
+    
     this.editForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
       date_join: new FormControl('', [Validators.required]),
       date_left: new FormControl('', []),
-      working_hours: new FormControl('', [Validators.required, Validators.pattern("^\d+:\d{2}:\d{2}$")]),
-      status: new FormControl(this.statusList[0])
+      working_hours: new FormControl('', [Validators.required]),
+      status: new FormControl(1)
     });
   }
 
@@ -40,7 +54,17 @@ export class EmployeeEditComponent implements OnInit {
       return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editForm.value))
+    this.route.params.subscribe(params => {
+      this.service.updateEmployee(this.editForm.value, params['id'])
+        .subscribe(
+          data => {
+            this.success = true;
+          },
+          e => {
+            this.error = true;
+          });
+    });
+
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
 
 @Component({
   selector: 'app-add',
@@ -11,7 +12,10 @@ export class EmployeeAddComponent implements OnInit {
   addForm: FormGroup;
   submitted = false;
   statusList: any[] | { value: string; }[];
-  constructor() { }
+  success: boolean;
+  error: boolean;
+
+  constructor(private service: EmployeeService) { }
 
   ngOnInit() {
     
@@ -25,7 +29,7 @@ export class EmployeeAddComponent implements OnInit {
       last_name: new FormControl('', [Validators.required]),
       date_join: new FormControl('', [Validators.required]),
       date_left: new FormControl('', []),
-      working_hours: new FormControl('', [Validators.required, Validators.pattern("^\d+:\d{2}:\d{2}$")]),
+      working_hours: new FormControl('', [Validators.required]),
       status: new FormControl(this.statusList[0])
     });
   }
@@ -39,8 +43,15 @@ export class EmployeeAddComponent implements OnInit {
     if (this.addForm.invalid) {
       return;
     }
-
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value))
+    
+    this.service.saveEmployee(this.addForm.value)
+        .subscribe(
+          data  => {
+          this.success = true;
+          },
+          e  => {
+            this.error = true;
+          });
   }
 
 
