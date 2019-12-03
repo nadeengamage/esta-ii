@@ -12,6 +12,9 @@ import { EmployeeAddComponent } from './components/modules/employee/add/add.comp
 import { EmployeeDeleteComponent } from './components/modules/employee/delete/delete.component';
 import { AssignerAddComponent } from './components/modules/assigner/add/add.component';
 import { AssignerEditComponent } from './components/modules/assigner/edit/edit.component';
+import { DepartmentDeleteComponent } from './components/modules/department/delete/delete.component';
+import { EmployeeEditComponent } from './components/modules/employee/edit/edit.component';
+import { AssignerDeleteComponent } from './components/modules/assigner/delete/delete.component';
 
 const routes: Routes = [
     {
@@ -27,8 +30,12 @@ const routes: Routes = [
         component: DepartmentAddComponent
     },
     {
-        path: 'departments/edit',
+        path: 'departments/edit/:id',
         component: DepartmentEditComponent
+    },
+    {
+        path: 'departments/delete/:id',
+        component: DepartmentDeleteComponent
     },
     {
         path: 'employees',
@@ -39,7 +46,11 @@ const routes: Routes = [
         component: EmployeeAddComponent
     },
     {
-        path: 'employees/edit',
+        path: 'employees/edit/:id',
+        component: EmployeeEditComponent
+    },
+    {
+        path: 'employees/delete/:id',
         component: EmployeeDeleteComponent
     },
     {
@@ -51,8 +62,12 @@ const routes: Routes = [
         component: AssignerAddComponent
     },
     {
-        path: 'assigners/edit',
+        path: 'assigners/edit/:id',
         component: AssignerEditComponent
+    },
+    {
+        path: 'assigners/delete/:id',
+        component: AssignerDeleteComponent
     },
     {
         path: 'assigner-history',
