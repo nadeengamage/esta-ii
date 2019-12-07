@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Time;
 
 @Table(name = "assigner")
@@ -18,6 +19,7 @@ public class Assigner {
     private Long id;
 
     @Column(name = "working_hours")
+    @NotNull(message = "Working hours is required!")
     private Time workingHours;
 
     @ManyToOne

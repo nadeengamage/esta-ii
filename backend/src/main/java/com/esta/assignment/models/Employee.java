@@ -3,6 +3,7 @@ package com.esta.assignment.models;
 import com.esta.assignment.listeners.EmployeeEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -17,21 +18,26 @@ public class Employee {
     private Long id;
 
     @Column(name = "first_name")
+    @NotBlank(message = "First Name is required!")
     private String firstName;
 
     @Column(name = "last_name")
+    @NotBlank(message = "Last Name is required!")
     private String lastName;
 
     @Column(name = "working_hours")
+    @NotNull(message = "Working hours is required!")
     private Time workingHours;
 
     @Column(name = "date_join")
+    @NotNull(message = "Date of join is required!")
     private Date dateJoin;
 
     @Column(name = "date_left")
     private Date dateLeft;
 
     @Column(name = "status")
+    @NotNull(message = "Employee status is required!")
     private Boolean status;
 
     public Long getId() {
