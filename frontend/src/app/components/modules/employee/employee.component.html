@@ -1,0 +1,57 @@
+<div class="w-full pt-10">
+    <div class="text-right">
+        <a routerLink="/employees/add" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+            Add Employee +
+        </a>
+    </div>
+    <hr class="pt-2 border-b border-gray-200">
+</div>
+
+<div class="w-full pt-10">
+    <div class="mb-6">
+        <div class="text-xl font-bold text-gray-700">Employees</div>
+    </div>
+    <div id='recipients' class="p-8 mt-6 lg:mt-0">
+        <table datatable class="stripe hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Date Join</th>
+                    <th>Date Left</th>
+                    <th>Working Hours Per Day</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="employees?.length != 0">
+                <tr *ngFor="let employee of employees">
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.firstName }}</td>
+                    <td>{{ employee.lastName }}</td>
+                    <td>{{ employee.workingHours }}</td>
+                    <td>{{ employee.dateJoin }}</td>
+                    <td>{{ employee.dateLeft }}</td>
+                    <td>
+                        <p *ngIf="employee.status == 1">Active</p>
+                        <p *ngIf="employee.status == 0">Inactive</p>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/employees/edit', employee.id]" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 mr-2 rounded">
+                            Edit    
+                        </a>
+                        <a [routerLink]="['/employees/delete', employee.id]" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                            Delete   
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="employees?.length == 0">
+                <tr>
+                  <td colspan="6" class="no-data-available">No data!</td>
+                </tr>
+              <tbody>
+        </table>
+    </div>
+</div>

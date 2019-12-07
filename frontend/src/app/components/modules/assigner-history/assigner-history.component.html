@@ -1,0 +1,34 @@
+<div class="w-full pt-10">
+    <div class="mb-6">
+        <div class="text-xl font-bold text-gray-700">Assignment History</div>
+    </div>
+    <div id='recipients' class="p-8 mt-6 lg:mt-0">
+        <table datatable class="stripe hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Department</th>
+                    <th>Working Hours</th>
+                    <th>History Remarks</th>
+                    <th>Histoy Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="histories?.length != 0">
+                <tr *ngFor="let history of histories">
+                    <td>{{ history.employee.firstName }} {{ history.employee.lastName }}</td>
+                    <td>{{ history.department.name }}</td>
+                    <td>{{ history.workingHours }}</td>
+                    <td>{{ history.historyChangeReason }}</td>
+                    <td>{{ history.historyType }}</td>
+                    <td>{{ history.historyDate | date:'medium' }}</td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="histories?.length == 0">
+                <tr>
+                  <td colspan="6" class="no-data-available">No data!</td>
+                </tr>
+              <tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,1334 @@
+{
+	"info": {
+		"_postman_id": "b3551dac-70b7-4d95-a8c0-6dc310897884",
+		"name": "UVT-Assignment-II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Get all Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/employees?page=0&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all Employees",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/employees?page=0&size=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"employees"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:05:26 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"firstName\": \"Ty\",\n            \"lastName\": \"Ayelloribbin\",\n            \"workingHours\": \"08:00:00\",\n            \"dateJoin\": \"2019-12-05\",\n            \"dateLeft\": null,\n            \"status\": true\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"unsorted\": true,\n            \"sorted\": false,\n            \"empty\": true\n        },\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 1,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 20,\n    \"totalElements\": 20,\n    \"last\": false,\n    \"size\": 1,\n    \"first\": true,\n    \"numberOfElements\": 1,\n    \"number\": 0,\n    \"sort\": {\n        \"unsorted\": true,\n        \"sorted\": false,\n        \"empty\": true\n    },\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Employee by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/employees/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Employee by Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/employees/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:05:38 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Ty\",\n    \"lastName\": \"Ayelloribbin\",\n    \"workingHours\": \"08:00:00\",\n    \"dateJoin\": \"2019-12-05\",\n    \"dateLeft\": null,\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Create an Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Nadeen\",\n\t\"lastName\": \"Gamage\",\n\t\"workingHours\": \"08:00:00\",\n\t\"dateJoin\": \"2019-11-24\",\n\t\"dateLeft\": \"\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employees"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create an Employee",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"Nadeen\",\n\t\"lastName\": \"Gamage\",\n\t\"workingHours\": \"08:00:00\",\n\t\"dateJoin\": \"2019-11-24\",\n\t\"dateLeft\": \"\",\n\t\"status\": 1\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/employees",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"employees"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/v1/employees/21"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:05:59 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update an Employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Nadeen\",\n\t\"lastName\": \"Gamage\",\n\t\"workingHours\": \"08:00:00\",\n\t\"dateJoin\": \"2019-11-24\",\n\t\"dateLeft\": \"\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/employees/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an Employee",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"Nadeen\",\n\t\"lastName\": \"Gamage\",\n\t\"workingHours\": \"08:00:00\",\n\t\"dateJoin\": \"2019-11-24\",\n\t\"dateLeft\": \"\",\n\t\"status\": 1\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/employees/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"employees",
+										"2"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:06:14 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete an Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/employees/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an Employee",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/employees/8",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"employees",
+										"8"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:06:32 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Assigner",
+			"item": [
+				{
+					"name": "Get all Assigners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/assigners?page=0&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"assigners"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all Assigners",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/assigners?page=0&size=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"assigners"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:08:46 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"workingHours\": \"08:00:00\",\n            \"department\": {\n                \"id\": 1,\n                \"name\": \"HR\",\n                \"workingDaysPerWeek\": 5,\n                \"workingHoursPerDay\": \"08:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 1,\n                \"firstName\": \"Ty\",\n                \"lastName\": \"Ayelloribbin\",\n                \"workingHours\": \"08:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            }\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": false,\n            \"unsorted\": true,\n            \"empty\": true\n        },\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 1,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalPages\": 4,\n    \"totalElements\": 4,\n    \"size\": 1,\n    \"first\": true,\n    \"numberOfElements\": 1,\n    \"number\": 0,\n    \"sort\": {\n        \"sorted\": false,\n        \"unsorted\": true,\n        \"empty\": true\n    },\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Assigner by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/assigners/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"assigners",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Assigner by Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/assigners/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"assigners",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:08:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"workingHours\": \"08:00:00\",\n    \"department\": {\n        \"id\": 1,\n        \"name\": \"HR\",\n        \"workingDaysPerWeek\": 5,\n        \"workingHoursPerDay\": \"08:00:00\",\n        \"status\": true\n    },\n    \"employee\": {\n        \"id\": 1,\n        \"firstName\": \"Ty\",\n        \"lastName\": \"Ayelloribbin\",\n        \"workingHours\": \"08:00:00\",\n        \"dateJoin\": \"2019-12-05\",\n        \"dateLeft\": null,\n        \"status\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create an Assigner",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"workingHours\": \"08:00:00\",\n\t\"department\": {\n\t\t\"id\": 1\n\t},\n\t\"employee\": {\n\t\t\"id\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/assigners",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"assigners"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create an Assigner",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"workingHours\": \"08:00:00\",\n\t\"department\": {\n\t\t\"id\": 1\n\t},\n\t\"employee\": {\n\t\t\"id\": 8\n\t}\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/assigners",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"assigners"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/v1/assigners/5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:09:24 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update an Assigner",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"workingHours\": \"08:00:00\",\n\t\"department\": {\n\t\t\"id\": 1\n\t},\n\t\"employee\": {\n\t\t\"id\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/assigners/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"assigners",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an Assigner",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"workingHours\": \"08:00:00\",\n\t\"department\": {\n\t\t\"id\": 3\n\t},\n\t\"employee\": {\n\t\t\"id\": 9\n\t}\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/assigners/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"assigners",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:10:06 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete an Assigner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/assigners/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"assigners",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an Assigner",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/assigners/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"assigners",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:10:34 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Department",
+			"item": [
+				{
+					"name": "Get all Departments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/departments?page=1&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"departments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all Departments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/departments?page=1&size=10",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"departments"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:07:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [],\n    \"pageable\": {\n        \"sort\": {\n            \"unsorted\": true,\n            \"sorted\": false,\n            \"empty\": true\n        },\n        \"offset\": 10,\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 1,\n    \"totalElements\": 5,\n    \"last\": true,\n    \"size\": 10,\n    \"first\": false,\n    \"numberOfElements\": 0,\n    \"number\": 1,\n    \"sort\": {\n        \"unsorted\": true,\n        \"sorted\": false,\n        \"empty\": true\n    },\n    \"empty\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Department by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/departments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"departments",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Department by Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/departments/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"departments",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:07:17 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"HR\",\n    \"workingDaysPerWeek\": 5,\n    \"workingHoursPerDay\": \"08:00:00\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Create an Department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Finance\",\n\t\"workingDaysPerWeek\": \"5\",\n\t\"workingHoursPerDay\": \"08:00:00\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/departments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"departments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create an Department",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Finance\",\n\t\"workingDaysPerWeek\": \"5\",\n\t\"workingHoursPerDay\": \"08:00:00\",\n\t\"status\": 1\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/departments",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"departments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/v1/departments/6"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:07:29 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update an Department",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Finance\",\n\t\"workingDaysPerWeek\": \"5\",\n\t\"workingHoursPerDay\": \"09:00:00\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/departments/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"departments",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an Department",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Finance\",\n\t\"workingDaysPerWeek\": \"5\",\n\t\"workingHoursPerDay\": \"09:00:00\",\n\t\"status\": 1\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/departments/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"departments",
+										"2"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:07:42 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete an Department",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/departments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"departments",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an Department",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/departments/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"departments",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:07:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "Get Employee Assignment Histroy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/assigners/history",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"assigners",
+								"history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Employee Assignment Histroy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/assigners/history",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"assigners",
+										"history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Dec 2019 07:11:09 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"assignerId\": 1,\n            \"workingHours\": \"08:00:00\",\n            \"department\": {\n                \"id\": 1,\n                \"name\": \"HR\",\n                \"workingDaysPerWeek\": 5,\n                \"workingHoursPerDay\": \"08:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 1,\n                \"firstName\": \"Ty\",\n                \"lastName\": \"Ayelloribbin\",\n                \"workingHours\": \"08:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-05T11:02:44.000+0000\",\n            \"historyChangeReason\": \"Inserted Record\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 2,\n            \"assignerId\": 2,\n            \"workingHours\": \"09:00:00\",\n            \"department\": {\n                \"id\": 1,\n                \"name\": \"HR\",\n                \"workingDaysPerWeek\": 5,\n                \"workingHoursPerDay\": \"08:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 2,\n                \"firstName\": \"Hugo\",\n                \"lastName\": \"First\",\n                \"workingHours\": \"08:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-05T11:02:58.000+0000\",\n            \"historyChangeReason\": \"Inserted Record\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 3,\n            \"assignerId\": 3,\n            \"workingHours\": \"10:00:00\",\n            \"department\": {\n                \"id\": 1,\n                \"name\": \"HR\",\n                \"workingDaysPerWeek\": 5,\n                \"workingHoursPerDay\": \"08:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 3,\n                \"firstName\": \"Percy\",\n                \"lastName\": \"Vere\",\n                \"workingHours\": \"08:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-05T11:05:47.000+0000\",\n            \"historyChangeReason\": \"Inserted Record\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 4,\n            \"assignerId\": 4,\n            \"workingHours\": \"05:00:00\",\n            \"department\": {\n                \"id\": 2,\n                \"name\": \"IT\",\n                \"workingDaysPerWeek\": 5,\n                \"workingHoursPerDay\": \"08:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 3,\n                \"firstName\": \"Percy\",\n                \"lastName\": \"Vere\",\n                \"workingHours\": \"08:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-05T11:37:32.000+0000\",\n            \"historyChangeReason\": \"Inserted Record\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 5,\n            \"assignerId\": 5,\n            \"workingHours\": \"03:00:00\",\n            \"department\": {\n                \"id\": 3,\n                \"name\": \"Finance\",\n                \"workingDaysPerWeek\": 6,\n                \"workingHoursPerDay\": \"09:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 3,\n                \"firstName\": \"Percy\",\n                \"lastName\": \"Vere\",\n                \"workingHours\": \"08:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-05T11:37:47.000+0000\",\n            \"historyChangeReason\": \"Inserted Record\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 6,\n            \"assignerId\": 6,\n            \"workingHours\": \"10:00:00\",\n            \"department\": {\n                \"id\": 5,\n                \"name\": \"Delivery\",\n                \"workingDaysPerWeek\": 7,\n                \"workingHoursPerDay\": \"10:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 6,\n                \"firstName\": \"John\",\n                \"lastName\": \"Quil\",\n                \"workingHours\": \"09:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-07T00:08:37.000+0000\",\n            \"historyChangeReason\": \"Inserted Record\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 7,\n            \"assignerId\": 5,\n            \"workingHours\": \"08:00:00\",\n            \"department\": {\n                \"id\": 1,\n                \"name\": \"HR\",\n                \"workingDaysPerWeek\": 5,\n                \"workingHoursPerDay\": \"08:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 8,\n                \"firstName\": \"Cherry\",\n                \"lastName\": \"Blossom\",\n                \"workingHours\": \"09:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-07T07:09:24.000+0000\",\n            \"historyChangeReason\": \"Inserted an Assigner\",\n            \"historyType\": \"CREATED\"\n        },\n        {\n            \"id\": 8,\n            \"assignerId\": 1,\n            \"workingHours\": \"08:00:00\",\n            \"department\": {\n                \"id\": 3,\n                \"name\": \"Finance\",\n                \"workingDaysPerWeek\": 6,\n                \"workingHoursPerDay\": \"09:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 9,\n                \"firstName\": \"Ginger\",\n                \"lastName\": \"Plant\",\n                \"workingHours\": \"09:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-07T07:10:06.000+0000\",\n            \"historyChangeReason\": \"Updated an Assigner\",\n            \"historyType\": \"UPDATED\"\n        },\n        {\n            \"id\": 9,\n            \"assignerId\": 1,\n            \"workingHours\": \"08:00:00\",\n            \"department\": {\n                \"id\": 3,\n                \"name\": \"Finance\",\n                \"workingDaysPerWeek\": 6,\n                \"workingHoursPerDay\": \"09:00:00\",\n                \"status\": true\n            },\n            \"employee\": {\n                \"id\": 9,\n                \"firstName\": \"Ginger\",\n                \"lastName\": \"Plant\",\n                \"workingHours\": \"09:00:00\",\n                \"dateJoin\": \"2019-12-05\",\n                \"dateLeft\": null,\n                \"status\": true\n            },\n            \"historyDate\": \"2019-12-07T07:10:34.000+0000\",\n            \"historyChangeReason\": \"Deleted an Assigner\",\n            \"historyType\": \"DELETED\"\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": false,\n            \"unsorted\": true,\n            \"empty\": true\n        },\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 100,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 9,\n    \"size\": 100,\n    \"first\": true,\n    \"numberOfElements\": 9,\n    \"number\": 0,\n    \"sort\": {\n        \"sorted\": false,\n        \"unsorted\": true,\n        \"empty\": true\n    },\n    \"empty\": false\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
