@@ -8,19 +8,19 @@ import java.sql.Time;
 
 public class AssignerDTO implements Serializable {
 
-    private Long id;
+    private String id;
 
     private Time workingHours;
 
-    private Department department;
+    private DepartmentDTO department;
 
-    private Employee employee;
+    private EmployeeDTO employee;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -32,19 +32,19 @@ public class AssignerDTO implements Serializable {
         this.workingHours = workingHours;
     }
 
-    public Department getDepartment() {
+    public DepartmentDTO getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(DepartmentDTO department) {
         this.department = department;
     }
 
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
 }
