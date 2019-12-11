@@ -54,9 +54,9 @@ public class DepartmentService {
      * @param departmentId Long
      * @return Department details.
      */
-    public Department getDepartmentById(Long departmentId) {
+    public Department getDepartmentById(String departmentId) {
         log.debug("Start the search an department by id");
-        return repository.findById(departmentId)
+        return repository.findByIdentityNo(departmentId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Department %s is couldn't found!", departmentId)));
     }
 
@@ -83,7 +83,7 @@ public class DepartmentService {
      * @param department Department
      * @param id         Long
      */
-    public void updateDepartment(Department department, Long id) {
+    public void updateDepartment(Department department, String id) {
         log.debug("Start update an object of department");
         Department exitsDepartment = getDepartmentById(id);
         department.setId(exitsDepartment.getId());
@@ -96,7 +96,7 @@ public class DepartmentService {
      *
      * @param id Long
      */
-    public void deleteDepartment(Long id) {
+    public void deleteDepartment(String id) {
         log.debug("Start delete of department object");
         Department exitsDepartment = getDepartmentById(id);
         repository.delete(exitsDepartment);

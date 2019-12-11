@@ -57,7 +57,7 @@ public class DepartmentController extends AbstractRestHandler {
      */
     @GetMapping(path = "/{id}",
             produces = {"application/json"})
-    public DepartmentDTO getDepartmentById(@PathVariable Long id) {
+    public DepartmentDTO getDepartmentById(@PathVariable String id) {
         DepartmentDTO departmentDTO = this.convertToDto(service.getDepartmentById(id));
         return departmentDTO;
     }
@@ -88,7 +88,7 @@ public class DepartmentController extends AbstractRestHandler {
             consumes = {"application/json"},
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAnDepartment(@RequestBody Department department, @PathVariable Long id) {
+    public void updateAnDepartment(@RequestBody Department department, @PathVariable String id) {
         service.updateDepartment(department, id);
     }
 
@@ -100,7 +100,7 @@ public class DepartmentController extends AbstractRestHandler {
     @DeleteMapping(path = "/{id}",
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnDepartment(@PathVariable Long id) {
+    public void deleteAnDepartment(@PathVariable String id) {
         service.deleteDepartment(id);
     }
 
