@@ -1,14 +1,19 @@
 package com.esta.assignment.controllers;
 
+import com.esta.assignment.dtos.EmployeeDTO;
 import com.esta.assignment.models.Employee;
 import com.esta.assignment.services.EmployeeService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Employee Controller.
@@ -20,6 +25,9 @@ public class EmployeeController extends AbstractRestHandler {
     @Autowired
     private EmployeeService service;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     /**
      * Get All Employees.
      *
@@ -29,9 +37,15 @@ public class EmployeeController extends AbstractRestHandler {
      */
     @GetMapping(produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
-    public Page<Employee> getAllEmployees(@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
-                                          @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
-        return service.getAllEmployee(page, size);
+    public Page<EmployeeDTO> getAllEmployees(@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
+                                             @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
+        Page<EmployeeDTO> employeeDTOPage = new PageImpl<EmployeeDTO>(
+                service.getAllEmployee(page, size)
+                        .getContent()
+                        .stream()
+                        .map(this::convertToDto)
+                        .collect(Collectors.toList()));
+        return employeeDTOPage;
     }
 
     /**
@@ -42,9 +56,9 @@ public class EmployeeController extends AbstractRestHandler {
      */
     @GetMapping(path = "/{id}",
             produces = {"application/json"})
-    public Employee getEmployeeById(@PathVariable Long id) {
-        Employee employee = service.getEmployeeById(id);
-        return employee;
+    public EmployeeDTO getEmployeeById(@PathVariable Long id) {
+        EmployeeDTO employeeDTO = this.convertToDto(service.getEmployeeById(id));
+        return employeeDTO;
     }
 
     /**
@@ -88,4 +102,16 @@ public class EmployeeController extends AbstractRestHandler {
     public void deleteAnEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
     }
+
+    /**
+     * Convert to DTO
+     * @param employee
+     * @return employee DTO
+     */
+    private EmployeeDTO convertToDto(Employee employee) {
+        EmployeeDTO employeeDTO = modelMapper.map(employee, EmployeeDTO.class);
+        employeeDTO.setId(employee.getIdentityNo());
+        return employeeDTO;
+    }
+
 }
