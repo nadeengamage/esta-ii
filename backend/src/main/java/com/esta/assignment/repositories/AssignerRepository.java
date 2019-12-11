@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Persistence operations of the Assigner model.
@@ -19,6 +20,8 @@ public interface AssignerRepository extends JpaRepository<Assigner, Long> {
 
     Page<Assigner> findAll(Pageable pageable);
 
-    @Query("SELECT A.workingHours FROM Assigner A WHERE A.employee.id = ?1")
-    List<Time> findByEmployeeId(Long employeeId);
+    @Query("SELECT A.workingHours FROM Assigner A WHERE A.employee.identityNo = ?1")
+    List<Time> findByEmployeeId(String employeeId);
+
+    Optional<Assigner> findByIdentityNo(String identityNo);
 }
