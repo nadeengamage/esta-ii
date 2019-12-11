@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
+import java.util.UUID;
 
 @Table(name = "assigner")
 @Entity
@@ -17,6 +18,9 @@ public class Assigner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "identity_no", unique = true, nullable = false, updatable = false)
+    private String identityNo = UUID.randomUUID().toString();
 
     @Column(name = "working_hours")
     @NotNull(message = "Working hours is required!")
@@ -38,6 +42,14 @@ public class Assigner {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIdentityNo() {
+        return identityNo;
+    }
+
+    public void setIdentityNo(String identityNo) {
+        this.identityNo = identityNo;
     }
 
     public Time getWorkingHours() {
