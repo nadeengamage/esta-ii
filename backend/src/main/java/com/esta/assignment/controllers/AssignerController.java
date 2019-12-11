@@ -3,8 +3,12 @@ package com.esta.assignment.controllers;
 import com.esta.assignment.dtos.AssignerDTO;
 import com.esta.assignment.dtos.AssignerHistoryDTO;
 import com.esta.assignment.models.Assigner;
+import com.esta.assignment.models.Department;
+import com.esta.assignment.models.Employee;
 import com.esta.assignment.models.audits.AssignerHistory;
 import com.esta.assignment.services.AssignerService;
+import com.esta.assignment.services.DepartmentService;
+import com.esta.assignment.services.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +29,12 @@ public class AssignerController extends AbstractRestHandler {
 
     @Autowired
     private AssignerService service;
+
+    @Autowired
+    private DepartmentService departmentService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -81,7 +91,7 @@ public class AssignerController extends AbstractRestHandler {
      */
     @GetMapping(path = "/{id}",
             produces = {"application/json"})
-    public AssignerDTO getAssignerById(@PathVariable Long id) {
+    public AssignerDTO getAssignerById(@PathVariable String id) {
         AssignerDTO assignerDTO = this.convertToDto(service.getAssignerById(id));
         return assignerDTO;
     }
@@ -96,9 +106,10 @@ public class AssignerController extends AbstractRestHandler {
     @PostMapping(consumes = {"application/json"},
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAnAssigner(@RequestBody Assigner assigner,
+    public void createAnAssigner(@RequestBody AssignerDTO assigner,
                                  HttpServletRequest request, HttpServletResponse response) {
-        Assigner createdAssigner = service.saveAssigner(assigner);
+
+        AssignerDTO createdAssigner = this.convertToDto(service.saveAssigner(this.covertToEntity(assigner)));
         response.setHeader("Location", request.getRequestURL().append("/").append(createdAssigner.getId()).toString());
     }
 
@@ -112,8 +123,8 @@ public class AssignerController extends AbstractRestHandler {
             consumes = {"application/json"},
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAnAssigner(@RequestBody Assigner assigner, @PathVariable Long id) {
-        service.updateAssigner(assigner, id);
+    public void updateAnAssigner(@RequestBody AssignerDTO assigner, @PathVariable String id) {
+        service.updateAssigner(this.covertToEntity(assigner), id);
     }
 
     /**
@@ -124,7 +135,7 @@ public class AssignerController extends AbstractRestHandler {
     @DeleteMapping(path = "/{id}",
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnAssigner(@PathVariable Long id) {
+    public void deleteAnAssigner(@PathVariable String id) {
         service.deleteAssigner(id);
     }
 
@@ -151,6 +162,23 @@ public class AssignerController extends AbstractRestHandler {
         assignerHistoryDTO.getDepartment().setId(assignerHistory.getDepartment().getIdentityNo());
         assignerHistoryDTO.getEmployee().setId(assignerHistory.getEmployee().getIdentityNo());
         return assignerHistoryDTO;
+    }
+
+    /**
+     * Convert to Entity
+     * @param assignerDTO
+     * @return entity
+     */
+    private Assigner covertToEntity(AssignerDTO assignerDTO) {
+        Department department = departmentService.getDepartmentById(assignerDTO.getDepartment().getId());
+        Employee employee = employeeService.getEmployeeById(assignerDTO.getEmployee().getId());
+
+        Assigner assigner = new Assigner();
+        assigner.setWorkingHours(assignerDTO.getWorkingHours());
+        assigner.setDepartment(department);
+        assigner.setEmployee(employee);
+
+        return assigner;
     }
 
 }

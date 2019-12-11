@@ -75,9 +75,9 @@ public class AssignerService {
      * @param assignerId Long
      * @return Assigner details.
      */
-    public Assigner getAssignerById(Long assignerId) {
+    public Assigner getAssignerById(String assignerId) {
         log.debug("Start the search an assigner by id");
-        return repository.findById(assignerId)
+        return repository.findByIdentityNo(assignerId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Assigner %s is couldn't found!", assignerId)));
     }
 
@@ -109,7 +109,7 @@ public class AssignerService {
      * @param assigner Assigner
      * @param id       Long
      */
-    public void updateAssigner(Assigner assigner, Long id) {
+    public void updateAssigner(Assigner assigner, String id) {
         checkEmployeeAssignment(assigner);
 
         log.debug("Start update an object of assigner");
@@ -125,7 +125,7 @@ public class AssignerService {
      *
      * @param id Long
      */
-    public void deleteAssigner(Long id) {
+    public void deleteAssigner(String id) {
         log.debug("Start delete of assigner object");
         Assigner exitsAssigner = getAssignerById(id);
         repository.delete(exitsAssigner);
