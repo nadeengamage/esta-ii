@@ -18,8 +18,6 @@
                     <th>ID</th>
                     <th>FirstName</th>
                     <th>LastName</th>
-                    <th>Date Join</th>
-                    <th>Date Left</th>
                     <th>Working Hours Per Day</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -31,8 +29,6 @@
                     <td>{{ employee.firstName }}</td>
                     <td>{{ employee.lastName }}</td>
                     <td>{{ employee.workingHours }}</td>
-                    <td>{{ employee.dateJoin }}</td>
-                    <td>{{ employee.dateLeft }}</td>
                     <td>
                         <p *ngIf="employee.status == 1">Active</p>
                         <p *ngIf="employee.status == 0">Inactive</p>

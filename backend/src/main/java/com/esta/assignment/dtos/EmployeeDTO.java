@@ -16,7 +16,6 @@ public class EmployeeDTO implements Serializable {
 
     private Time workingHours;
 
-    @JsonIgnore
     private Date dateJoin;
 
     @JsonIgnore

@@ -56,7 +56,7 @@ public class EmployeeController extends AbstractRestHandler {
      */
     @GetMapping(path = "/{id}",
             produces = {"application/json"})
-    public EmployeeDTO getEmployeeById(@PathVariable Long id) {
+    public EmployeeDTO getEmployeeById(@PathVariable String id) {
         EmployeeDTO employeeDTO = this.convertToDto(service.getEmployeeById(id));
         return employeeDTO;
     }
@@ -87,7 +87,7 @@ public class EmployeeController extends AbstractRestHandler {
             consumes = {"application/json"},
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAnEmployee(@RequestBody Employee employee, @PathVariable Long id) {
+    public void updateAnEmployee(@RequestBody Employee employee, @PathVariable String id) {
         service.updateEmployee(employee, id);
     }
 
@@ -99,7 +99,7 @@ public class EmployeeController extends AbstractRestHandler {
     @DeleteMapping(path = "/{id}",
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnEmployee(@PathVariable Long id) {
+    public void deleteAnEmployee(@PathVariable String id) {
         service.deleteEmployee(id);
     }
 

@@ -53,9 +53,9 @@ public class EmployeeService {
      * @param employeeId Long
      * @return Employee details.
      */
-    public Employee getEmployeeById(Long employeeId) {
+    public Employee getEmployeeById(String employeeId) {
         log.debug("Start the search an employee by id");
-        return repository.findById(employeeId)
+        return repository.findByIdentityNo(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Employee %s is couldn't found!", employeeId)));
     }
 
@@ -82,7 +82,7 @@ public class EmployeeService {
      * @param employee Employee
      * @param id       Long
      */
-    public void updateEmployee(Employee employee, Long id) {
+    public void updateEmployee(Employee employee, String id) {
         log.debug("Start update an object of employee");
         Employee exitsEmployee = getEmployeeById(id);
         employee.setId(exitsEmployee.getId());
@@ -95,7 +95,7 @@ public class EmployeeService {
      *
      * @param id Long
      */
-    public void deleteEmployee(Long id) {
+    public void deleteEmployee(String id) {
         log.debug("Start delete of employee object");
         Employee exitsEmployee = getEmployeeById(id);
         repository.delete(exitsEmployee);
