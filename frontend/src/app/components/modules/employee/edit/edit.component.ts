@@ -21,19 +21,19 @@ export class EmployeeEditComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-      this.service.getEmployeeById(params['id'])
+      this.service.getEmployeeById(params.id)
         .subscribe((res: any) => {
           this.editForm.setValue({
-            first_name: res.firstName, 
+            first_name: res.firstName,
             last_name: res.lastName,
             date_join: res.dateJoin,
-            date_left: res.dateLeft,
+            date_left: '',
             working_hours: res.workingHours,
             status: res.status,
           });
         })
     });
-    
+
     this.editForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),

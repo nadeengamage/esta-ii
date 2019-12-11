@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.UUID;
 
 @Entity
 @Table(name = "employee")
@@ -16,6 +17,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
     private Long id;
+
+    @Column(name = "identity_no", unique = true, nullable = false, updatable = false)
+    private String identityNo = UUID.randomUUID().toString();
 
     @Column(name = "first_name")
     @NotBlank(message = "First Name is required!")
@@ -46,6 +50,14 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIdentityNo() {
+        return identityNo;
+    }
+
+    public void setIdentityNo(String identityNo) {
+        this.identityNo = identityNo;
     }
 
     public String getFirstName() {

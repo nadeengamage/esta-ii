@@ -25,6 +25,7 @@ export class EmployeeComponent implements OnInit {
       processing: true,
       ajax: (dataTablesParameters: any, callback) => {
         this.http
+          // tslint:disable-next-line:max-line-length
           .get<DataTablesResponse>(this.service.getEmployees() + '?page=' + dataTablesParameters.start + '&size=' + dataTablesParameters.length)
           .pipe(map((res: any) => {
             return {
@@ -32,7 +33,7 @@ export class EmployeeComponent implements OnInit {
               recordsTotal: res.totalElements,
               recordsFiltered: res.totalElements,
               data: res.content
-            }
+            };
           }))
           .subscribe(resp => {
             this.employees = resp.data;
@@ -46,7 +47,7 @@ export class EmployeeComponent implements OnInit {
       columns: [{ data: 'id' }, { data: 'name' }, { data: 'workingDaysPerWeek' }, { data: 'workingHoursPerDay' }, { data: 'status' }]
     };
   }
-  
+
 }
 
 class DataTablesResponse {

@@ -14,7 +14,7 @@ export class DepartmentAddComponent implements OnInit {
   statusList;
   success: boolean;
   error: boolean;
-  
+
   constructor(private service: DepartmentService) { }
 
   ngOnInit() {
@@ -33,20 +33,20 @@ export class DepartmentAddComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.addForm.invalid) {
-            return;
-        }
+    // stop here if form is invalid
+    if (this.addForm.invalid) {
+      return;
+    }
 
-        // alert('SUCCESS!! :-)\n\n' + JSON.stringify())
-        this.service.saveDepartmet(this.addForm.value)
-        .subscribe(
-          data  => {
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify())
+    this.service.saveDepartmet(this.addForm.value)
+      .subscribe(
+        data => {
           this.success = true;
-          },
-          e  => {
-            this.error = true;
-          });
+        },
+        e => {
+          this.error = true;
+        });
   }
 
 }

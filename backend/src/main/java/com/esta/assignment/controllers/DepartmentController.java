@@ -1,14 +1,18 @@
 package com.esta.assignment.controllers;
 
+import com.esta.assignment.dtos.DepartmentDTO;
 import com.esta.assignment.models.Department;
 import com.esta.assignment.services.DepartmentService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.stream.Collectors;
 
 /**
  * Department Controller.
@@ -20,6 +24,9 @@ public class DepartmentController extends AbstractRestHandler {
     @Autowired
     private DepartmentService service;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     /**
      * Get All Departments.
      *
@@ -29,9 +36,17 @@ public class DepartmentController extends AbstractRestHandler {
      */
     @GetMapping(produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
-    public Page<Department> getAllDepartments(@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
-                                              @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
-        return service.getAllDepartment(page, size);
+    public Page<DepartmentDTO> getAllDepartments(@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
+                                                 @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
+        Page<DepartmentDTO> departmentDTOPage = new PageImpl<DepartmentDTO>(
+                service.getAllDepartment(page, size)
+                .getContent()
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList())
+        );
+
+        return departmentDTOPage;
     }
 
     /**
@@ -42,9 +57,9 @@ public class DepartmentController extends AbstractRestHandler {
      */
     @GetMapping(path = "/{id}",
             produces = {"application/json"})
-    public Department getDepartmentById(@PathVariable Long id) {
-        Department department = service.getDepartmentById(id);
-        return department;
+    public DepartmentDTO getDepartmentById(@PathVariable String id) {
+        DepartmentDTO departmentDTO = this.convertToDto(service.getDepartmentById(id));
+        return departmentDTO;
     }
 
     /**
@@ -73,7 +88,7 @@ public class DepartmentController extends AbstractRestHandler {
             consumes = {"application/json"},
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAnDepartment(@RequestBody Department department, @PathVariable Long id) {
+    public void updateAnDepartment(@RequestBody Department department, @PathVariable String id) {
         service.updateDepartment(department, id);
     }
 
@@ -85,7 +100,19 @@ public class DepartmentController extends AbstractRestHandler {
     @DeleteMapping(path = "/{id}",
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnDepartment(@PathVariable Long id) {
+    public void deleteAnDepartment(@PathVariable String id) {
         service.deleteDepartment(id);
     }
+
+    /**
+     * Convert to DTO
+     * @param department
+     * @return department DTO
+     */
+    private DepartmentDTO convertToDto(Department department) {
+        DepartmentDTO departmentDTO = modelMapper.map(department, DepartmentDTO.class);
+        departmentDTO.setId(department.getIdentityNo());
+        return departmentDTO;
+    }
+
 }
