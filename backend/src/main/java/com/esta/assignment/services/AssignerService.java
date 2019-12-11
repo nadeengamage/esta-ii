@@ -139,7 +139,7 @@ public class AssignerService {
      */
     private void checkEmployeeAssignment(Assigner assigner) {
         Employee employee = employeeService.getEmployeeById(assigner.getEmployee().getIdentityNo());
-        List<Time> times = repository.findByEmployeeId(employee.getId());
+        List<Time> times = repository.findByEmployeeId(employee.getIdentityNo());
         times.add(assigner.getWorkingHours());
 
         try {
